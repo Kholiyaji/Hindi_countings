@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hindi Numbers 0 to 9 | LaviSight</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF2F7; --surface:#FFFFFF; --ink:#14213D; --muted:#55627A; --accent:#E8A317; --accent-ink:#14213D; --line:#D3DBE8;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1830; --surface:#18254A; --ink:#F2F5FB; --muted:#A5B2CC; --accent:#F2B93B; --accent-ink:#0F1830; --line:#2C3C68; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1830; --surface:#18254A; --ink:#F2F5FB; --muted:#A5B2CC; --accent:#F2B93B; --accent-ink:#0F1830; --line:#2C3C68; color-scheme:dark;
+}
+html{height:auto;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Mukta",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:28px 18px 40px}
+h1{font-family:"Tiro Devanagari Hindi","Noto Serif Devanagari",Georgia,serif;font-weight:400;font-size:2.4rem;line-height:1.15;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 22px;font-size:1.05rem}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+button{font:inherit;cursor:pointer}
+.pill{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600}
+.pill[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;list-style:none;margin:0;padding:0}
+.card{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:18px;padding:16px 8px 14px}
+.card:active{transform:scale(.97)}
+.dev{font-family:"Tiro Devanagari Hindi","Noto Serif Devanagari",Georgia,serif;font-size:4.6rem;line-height:1.1}
+.word{font-size:1.45rem;font-weight:800;margin-top:2px}
+.say{color:var(--muted);font-size:1rem}
+.en{margin-top:8px;font-weight:600;font-size:.95rem;background:var(--bg);border-radius:8px;padding:2px 12px;min-width:3.2rem}
+.quiz .en{color:transparent;background:var(--accent)}
+.quiz .card.show .en{color:var(--accent-ink)}
+.zero{grid-column:1 / -1}
+.example{margin-top:26px;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:18px}
+.example h2{margin:0 0 6px;font-size:1.2rem}
+.example .big{font-family:"Tiro Devanagari Hindi",Georgia,serif;font-size:3rem;margin:4px 0}
+.example p{margin:4px 0;color:var(--muted)}
+footer{margin-top:30px;text-align:center}
+.yt{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:800;text-decoration:none;border-radius:999px;padding:12px 24px}
+footer p{margin:0 0 12px;color:var(--muted)}
+.hund{margin-top:30px}
+.hund h2{font-size:1.3rem;margin:0 0 4px}
+.hund p{margin:0 0 12px;color:var(--muted)}
+.count{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+.mini{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:6px 9px;line-height:1.25}
+.mini .t{font-weight:800;font-size:1rem}
+.mini .t i{font-family:"Tiro Devanagari Hindi",Georgia,serif;font-style:normal;font-weight:400;color:var(--muted);margin-right:6px}
+.mini .r{font-size:.78rem;color:var(--muted)}
+.mini.ten{border-color:var(--accent);border-width:1.5px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.card:active{transform:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>हिंदी अंक<br>Hindi numbers 0 to 9</h1>
+  <p class="sub">Tap any card to hear it. Learn all ten in two minutes.</p>
+
+  <div class="tools">
+    <button class="pill" id="quizBtn" aria-pressed="false">Quiz mode</button>
+    <button class="pill" id="revealBtn" hidden>Show all answers</button>
+  </div>
+
+  <ul class="grid" id="grid"></ul>
+
+  <section class="hund">
+    <h2>Count from 1 to 100</h2>
+    <p>Tap a number to hear it. Boxes with a yellow border are the tens.</p>
+    <div class="count" id="count"></div>
+  </section>
+
+  <section class="example">
+    <h2>Now read this</h2>
+    <div class="big">७५</div>
+    <p>७ is 7 and ५ is 5, so this is <strong>75</strong>, said <strong>pachattar</strong> (पचहत्तर).</p>
+    <p>Hindi numbers above 10 are said as one word, so each one is worth learning on its own.</p>
+  </section>
+
+  <footer>
+    <p>Liked this? More on my channel.</p>
+    <a class="yt" href="https://youtube.com/@lavisight?si=v0MxOBvGv2d5rOuJ" target="_blank" rel="noopener">Watch LaviSight on YouTube</a>
+  </footer>
+</main>
+
+<script>
+const data=[
+ ["०","शून्य","shunya",0],["१","एक","ek",1],["२","दो","do",2],["३","तीन","teen",3],["४","चार","chaar",4],
+ ["५","पाँच","paanch",5],["६","छह","chhah",6],["७","सात","saat",7],["८","आठ","aath",8],["९","नौ","nau",9]
+];
+const grid=document.getElementById("grid");
+data.forEach(([d,w,s,n])=>{
+  const li=document.createElement("li");
+  if(n===0)li.className="zero";
+  li.innerHTML='<button class="card" aria-label="'+n+' in Hindi: '+s+'"><span class="dev">'+d+'</span><span class="word">'+w+'</span><span class="say">'+s+'</span><span class="en">'+n+'</span></button>';
+  const btn=li.firstChild;
+  btn.addEventListener("click",()=>{
+    btn.classList.add("show");
+    try{
+      if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+        const u=new SpeechSynthesisUtterance(w);
+        u.lang="hi-IN";u.rate=.8;
+        speechSynthesis.speak(u);
+      }
+    }catch(e){}
+  });
+  grid.appendChild(li);
+});
+
+const hundred="एक ek;दो do;तीन teen;चार chaar;पाँच paanch;छह chhah;सात saat;आठ aath;नौ nau;दस das;ग्यारह gyaarah;बारह baarah;तेरह terah;चौदह chaudah;पंद्रह pandrah;सोलह solah;सत्रह satrah;अठारह athaarah;उन्नीस unnees;बीस bees;इक्कीस ikkees;बाईस baaees;तेईस teyees;चौबीस chaubees;पच्चीस pachchees;छब्बीस chhabbees;सत्ताईस sattaaees;अट्ठाईस atthaaees;उनतीस untees;तीस tees;इकतीस ikatees;बत्तीस battees;तैंतीस taintees;चौंतीस chauntees;पैंतीस paintees;छत्तीस chhattees;सैंतीस saintees;अड़तीस adtees;उनतालीस untaalees;चालीस chaalees;इकतालीस iktaalees;बयालीस bayaalees;तैंतालीस taintaalees;चौवालीस chauvaalees;पैंतालीस paintaalees;छयालीस chhiyaalees;सैंतालीस saintaalees;अड़तालीस adtaalees;उनचास unchaas;पचास pachaas;इक्यावन ikyaavan;बावन baavan;तिरपन tirpan;चौवन chauvan;पचपन pachpan;छप्पन chhappan;सत्तावन sattaavan;अट्ठावन atthaavan;उनसठ unsath;साठ saath;इकसठ iksath;बासठ baasath;तिरसठ tirsath;चौंसठ chaunsath;पैंसठ painsath;छियासठ chhiyaasath;सड़सठ sadsath;अड़सठ adsath;उनहत्तर unhattar;सत्तर sattar;इकहत्तर ikhattar;बहत्तर bahattar;तिहत्तर tihattar;चौहत्तर chauhattar;पचहत्तर pachattar;छिहत्तर chhihattar;सतहत्तर sathattar;अठहत्तर athhattar;उनासी unaasee;अस्सी assee;इक्यासी ikyaasee;बयासी bayaasee;तिरासी tiraasee;चौरासी chauraasee;पचासी pachaasee;छियासी chhiyaasee;सत्तासी sattaasee;अट्ठासी atthaasee;नवासी navaasee;नब्बे nabbe;इक्यानवे ikyaanave;बानवे baanave;तिरानवे tiraanave;चौरानवे chauraanave;पचानवे pachaanave;छियानवे chhiyaanave;सत्तानवे sattaanave;अट्ठानवे atthaanave;निन्यानवे ninyaanave;सौ sau".split(";");
+const dig="०१२३४५६७८९";
+const countBox=document.getElementById("count");
+hundred.forEach((item,i)=>{
+  const n=i+1,cut=item.lastIndexOf(" "),w=item.slice(0,cut),r=item.slice(cut+1);
+  const dv=String(n).split("").map(c=>dig[c]).join("");
+  const b=document.createElement("button");
+  b.className="mini"+(n%10===0?" ten":"");
+  b.setAttribute("aria-label",n+" in Hindi: "+r);
+  b.innerHTML='<span class="t"><i>'+dv+'</i>'+w+'</span><span class="r">'+n+' · '+r+'</span>';
+  b.addEventListener("click",()=>{
+    try{
+      if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+        const u=new SpeechSynthesisUtterance(w);
+        u.lang="hi-IN";u.rate=.8;
+        speechSynthesis.speak(u);
+      }
+    }catch(e){}
+  });
+  countBox.appendChild(b);
+});
+
+const quizBtn=document.getElementById("quizBtn"),revealBtn=document.getElementById("revealBtn");
+quizBtn.addEventListener("click",()=>{
+  const on=quizBtn.getAttribute("aria-pressed")!=="true";
+  quizBtn.setAttribute("aria-pressed",on);
+  grid.classList.toggle("quiz",on);
+  revealBtn.hidden=!on;
+  document.querySelectorAll(".card").forEach(c=>c.classList.remove("show"));
+});
+revealBtn.addEventListener("click",()=>{
+  document.querySelectorAll(".card").forEach(c=>c.classList.add("show"));
+});
+</script>
+</body>
+</html>
